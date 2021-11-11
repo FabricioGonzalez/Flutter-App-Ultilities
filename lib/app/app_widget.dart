@@ -7,8 +7,8 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Todo Note App ',
-      theme: ThemeData.dark(),
-      // darkTheme: ThemeData,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
     ).modular();
   }
 }

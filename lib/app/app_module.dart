@@ -1,6 +1,5 @@
+import 'package:exemplo/app/inicial_module/inicial_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import 'home_module/home_module.dart';
 
 class AppModule extends Module {
   @override
@@ -8,7 +7,7 @@ class AppModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute('/', module: HomeModule()),
+        ModuleRoute('/', module: InicialModule()),
       ];
 
   // Widget get bootstrap => AppWidget();

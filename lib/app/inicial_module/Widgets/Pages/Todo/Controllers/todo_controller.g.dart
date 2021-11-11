@@ -24,6 +24,21 @@ mixin _$TodoController on ControllerBase, Store {
     });
   }
 
+  final _$filteredTodosAtom = Atom(name: 'ControllerBase.filteredTodos');
+
+  @override
+  ObservableList<TodoModel> get filteredTodos {
+    _$filteredTodosAtom.reportRead();
+    return super.filteredTodos;
+  }
+
+  @override
+  set filteredTodos(ObservableList<TodoModel> value) {
+    _$filteredTodosAtom.reportWrite(value, super.filteredTodos, () {
+      super.filteredTodos = value;
+    });
+  }
+
   final _$checkedAtom = Atom(name: 'ControllerBase.checked');
 
   @override
@@ -39,8 +54,34 @@ mixin _$TodoController on ControllerBase, Store {
     });
   }
 
+  final _$activeFilterAtom = Atom(name: 'ControllerBase.activeFilter');
+
+  @override
+  String get activeFilter {
+    _$activeFilterAtom.reportRead();
+    return super.activeFilter;
+  }
+
+  @override
+  set activeFilter(String value) {
+    _$activeFilterAtom.reportWrite(value, super.activeFilter, () {
+      super.activeFilter = value;
+    });
+  }
+
   final _$ControllerBaseActionController =
       ActionController(name: 'ControllerBase');
+
+  @override
+  void setFilter(String filter) {
+    final _$actionInfo = _$ControllerBaseActionController.startAction(
+        name: 'ControllerBase.setFilter');
+    try {
+      return super.setFilter(filter);
+    } finally {
+      _$ControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void addTodo(
@@ -59,10 +100,23 @@ mixin _$TodoController on ControllerBase, Store {
   }
 
   @override
+  void filterTodo(String filter) {
+    final _$actionInfo = _$ControllerBaseActionController.startAction(
+        name: 'ControllerBase.filterTodo');
+    try {
+      return super.filterTodo(filter);
+    } finally {
+      _$ControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 todos: ${todos},
-checked: ${checked}
+filteredTodos: ${filteredTodos},
+checked: ${checked},
+activeFilter: ${activeFilter}
     ''';
   }
 }
